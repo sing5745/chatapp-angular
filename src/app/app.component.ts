@@ -19,11 +19,6 @@ export class AppComponent {
     this.items = af.list('/messages');
   }
 
-  todaysDate(){
-
-    
-    
-  }
 
   send(chatMsg: string) {
     this.items.push({ message: chatMsg  + " " + new Date().toLocaleString()});
