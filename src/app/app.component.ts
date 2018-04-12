@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -8,21 +9,24 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 })
 export class AppComponent {
   
-  items : AngularFireList<any>;
+  items : AngularFireList<any>; //using to put messages in firebasse database
   msg: string = '';
-  msgList = [ ];
+  msgList = [ ]; //to display messages
 
-  myArr = [
-
-    {'title':'MyBlog'}
-  ];
 
   constructor(public af: AngularFireDatabase) {
+
     this.items = af.list('/messages');
   }
 
+  todaysDate(){
+
+    
+    
+  }
+
   send(chatMsg: string) {
-    this.items.push({ message: chatMsg });
+    this.items.push({ message: chatMsg  + " " + new Date().toLocaleString()});
     this.msg = '';
     this.msgList.push({message: chatMsg});
   }
